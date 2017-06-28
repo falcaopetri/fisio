@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Fisio.iml" filepath="$PROJECT_DIR$/Fisio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fisio_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Fisio_integrationTest.iml" group="Fisio" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fisio_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Fisio_main.iml" group="Fisio" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Fisio_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Fisio_test.iml" group="Fisio" />
+    </modules>
+  </component>
+</project>
