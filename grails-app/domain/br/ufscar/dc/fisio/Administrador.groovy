@@ -1,7 +1,5 @@
 package br.ufscar.dc.fisio
 
-import org.grails.datastore.gorm.GormEntity
-
 class Administrador extends Usuario {
     // Read: https://stackoverflow.com/a/26712097
     static final String AUTHORITY = "ROLE_ADMIN"
