@@ -8,12 +8,13 @@ class Fisioterapeuta extends Usuario {
 
     static constraints = {
         nome(blank: false)
-        crefitoEstado(blank: false)
-        crefitoID(blank: false)
-        universidade(blank: false)
-        dataNascimento(blank: false)
-        endereco(blank: false)
-        celular(blank: false)
+        telefone(nullable: true)
+        crefitoEstado(blank: false, nullable: true)
+        crefitoID(blank: false, nullable: true)
+        universidade(blank: false, nullable: true)
+        dataNascimento(blank: false, nullable: true)
+        endereco(blank: false, nullable: true)
+        celular(blank: false, nullable: true)
     }
 
     String nome

@@ -6,6 +6,7 @@ class Secretario extends Usuario {
 
     static constraints = {
         nome(blank: false)
+        telefone(nullable: true)
     }
 
     String nome

@@ -1,18 +1,23 @@
 package br.ufscar.dc.fisio
 
+import grails.plugin.springsecurity.annotation.Secured
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
+@Secured(Secretario.AUTHORITY)
 class ConsultaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured([Secretario.AUTHORITY, Fisioterapeuta.AUTHORITY])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Consulta.list(params), model:[consultaCount: Consulta.count()]
     }
 
+    @Secured([Secretario.AUTHORITY, Fisioterapeuta.AUTHORITY])
     def show(Consulta consulta) {
         respond consulta
     }

@@ -6,7 +6,8 @@ class Ficha {
     static hasOne = [avaliacao: Avaliacao]
 
     static constraints = {
-        avaliacao unique: true
+        avaliacao(unique: true, nullable: true, blank: true)
+        consultas(blank: true)
         area(blank: false)
         lesao(blank: false)
         gravidade(blank: false)
