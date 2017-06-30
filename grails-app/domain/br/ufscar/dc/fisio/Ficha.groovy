@@ -29,8 +29,8 @@ class Ficha {
     static hasOne = [avaliacao: Avaliacao]
 
     static constraints = {
-        avaliacao(unique: true, nullable: true, blank: true)
-        consultas(blank: true)
+        avaliacao(unique: true, nullable: true, blank: true, display: false)
+        consultas(blank: true, display: false)
         area(blank: false)
         lesao(blank: false)
         gravidade(inList: Gravidade.values()*.id, blank: false)

@@ -4,7 +4,7 @@ class Consulta {
     static hasOne = [relatorio: Relatorio, fisioterapeuta: Fisioterapeuta]
 
     static constraints = {
-        relatorio(unique: true, nullable: true, blank: true)
+        relatorio(unique: true, nullable: true, blank: true, display: false)
         data(blank: false)
     }
 

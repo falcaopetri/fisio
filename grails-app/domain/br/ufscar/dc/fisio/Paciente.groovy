@@ -22,6 +22,7 @@ class Paciente {
         cidade(blank: false)
         celular(blank: false)
         estadoCivil(inList: EstadoCivil.values()*.id, blank: false)
+        fichas(display: false)
     }
 
     String nome
