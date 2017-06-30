@@ -1,10 +1,9 @@
 package br.ufscar.dc.fisio
 
-import org.springframework.security.access.annotation.Secured
+import grails.plugin.springsecurity.annotation.Secured
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
 @Secured(Fisioterapeuta.AUTHORITY)
@@ -14,7 +13,7 @@ class AvaliacaoController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Avaliacao.list(params), model: [avaliacaoCount: Avaliacao.count()]
+        respond Avaliacao.list(params), model:[avaliacaoCount: Avaliacao.count()]
     }
 
     def show(Avaliacao avaliacao) {
@@ -35,11 +34,11 @@ class AvaliacaoController {
 
         if (avaliacao.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond avaliacao.errors, view: 'create'
+            respond avaliacao.errors, view:'create'
             return
         }
 
-        avaliacao.save flush: true
+        avaliacao.save flush:true
 
         request.withFormat {
             form multipartForm {
@@ -64,18 +63,18 @@ class AvaliacaoController {
 
         if (avaliacao.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond avaliacao.errors, view: 'edit'
+            respond avaliacao.errors, view:'edit'
             return
         }
 
-        avaliacao.save flush: true
+        avaliacao.save flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'avaliacao.label', default: 'Avaliacao'), avaliacao.id])
                 redirect avaliacao
             }
-            '*' { respond avaliacao, [status: OK] }
+            '*'{ respond avaliacao, [status: OK] }
         }
     }
 
@@ -88,14 +87,14 @@ class AvaliacaoController {
             return
         }
 
-        avaliacao.delete flush: true
+        avaliacao.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'avaliacao.label', default: 'Avaliacao'), avaliacao.id])
-                redirect action: "index", method: "GET"
+                redirect action:"index", method:"GET"
             }
-            '*' { render status: NO_CONTENT }
+            '*'{ render status: NO_CONTENT }
         }
     }
 
@@ -105,7 +104,7 @@ class AvaliacaoController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'avaliacao.label', default: 'Avaliacao'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*' { render status: NOT_FOUND }
+            '*'{ render status: NOT_FOUND }
         }
     }
 }

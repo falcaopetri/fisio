@@ -1,6 +1,16 @@
 package br.ufscar.dc.fisio
 
 class Avaliacao {
+    enum TipoTratamento {
+        CIRURGICO("Cirúrgico"), CONSERVADOR("Conservador")
+        private final String id
+
+        private TipoTratamento(String id) {
+            this.id = id
+        }
+
+        int value() { id }
+    }
 
     static constraints = {
         hma(blank: false)
@@ -16,6 +26,7 @@ class Avaliacao {
         diagnosticoFisio(blank: false)
         objetivosTratamento(blank: false)
         tratamento(blank: false)
+        tipoTratamento(inList: TipoTratamento.values()*.id, blank: false)
         comportamentoDor(blank: false)
     }
 
