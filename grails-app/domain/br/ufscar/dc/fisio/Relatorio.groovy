@@ -24,4 +24,9 @@ class Relatorio {
     String status
     String acontecimentos
     String observacoes
+
+    @Override
+    String toString() {
+        return consulta.toString() + " - " + status
+    }
 }

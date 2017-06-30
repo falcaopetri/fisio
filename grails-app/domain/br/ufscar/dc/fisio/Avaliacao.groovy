@@ -56,4 +56,9 @@ class Avaliacao {
     String objetivosTratamento
     String tratamento
     String comportamentoDor
+
+    @Override
+    String toString() {
+        return ficha.toString()
+    }
 }

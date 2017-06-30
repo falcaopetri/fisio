@@ -9,4 +9,10 @@ class Consulta {
     }
 
     Date data
+    Ficha ficha
+
+    @Override
+    String toString() {
+        return ficha?.paciente.toString() + " - " + data
+    }
 }

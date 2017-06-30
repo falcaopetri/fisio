@@ -26,10 +26,6 @@ class Fisioterapeuta extends Usuario {
     String telefone
     String celular
 
-    String toString() {
-        return nome
-    }
-
     @Override
     Fisioterapeuta save() {
         Fisioterapeuta user = super.save()
@@ -38,5 +34,10 @@ class Fisioterapeuta extends Usuario {
 
         UsuarioPapel.create(user, papel)
         return user
+    }
+
+    @Override
+    String toString() {
+        return nome
     }
 }

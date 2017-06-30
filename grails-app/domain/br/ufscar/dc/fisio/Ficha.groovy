@@ -50,4 +50,9 @@ class Ficha {
 
     Paciente paciente
     Fisioterapeuta fisioterapeuta
+
+    @Override
+    String toString() {
+        return paciente.toString() + " - " + lesao
+    }
 }

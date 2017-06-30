@@ -13,6 +13,7 @@ class Paciente {
     }
 
     static hasMany = [fichas: Ficha]
+
     static constraints = {
         nome(blank: false)
         dataNascimento(blank: false)
@@ -35,6 +36,7 @@ class Paciente {
     String nomeEmergencia
     String telefoneEmergencia
 
+    @Override
     String toString() {
         return nome
     }
