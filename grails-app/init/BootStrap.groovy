@@ -1,8 +1,9 @@
 import br.ufscar.dc.fisio.Administrador
 import br.ufscar.dc.fisio.Fisioterapeuta
+import br.ufscar.dc.fisio.Paciente
 import br.ufscar.dc.fisio.Secretario
-
 class BootStrap {
+
 
     def init = { servletContext ->
 
@@ -12,13 +13,8 @@ class BootStrap {
                 nome: "Administrador",
                 enabled: true
         )
-
         admin.save()
-        if (admin.hasErrors()) {
-            println admin.errors
-        } else {
-            println 'populando usuário admin - ok'
-        }
+        println admin.errors
 
         def sec = new Secretario(
                 username: "sec",
@@ -27,13 +23,8 @@ class BootStrap {
                 telefone: "",
                 enabled: true
         )
-
         sec.save()
-        if (sec.hasErrors()) {
-            println sec.errors
-        } else {
-            println 'populando usuário sec - ok'
-        }
+        println sec.errors
 
         def fisio = new Fisioterapeuta(
                 username: "fisio",
@@ -47,13 +38,14 @@ class BootStrap {
                 celular: "",
                 enabled: true
         )
-
         fisio.save()
-        if (fisio.hasErrors()) {
-            println fisio.errors
-        } else {
-            println 'populando usuário fisio - ok'
-        }
+        println fisio.errors
+//        def paciente = new Paciente(
+//                nome: "nome",
+//                ...
+//        )
+//        paciente.save()
+//        println paciente.errors
     }
     def destroy = {
     }
