@@ -19,6 +19,12 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
+
+            <g:form controller="fisioterapeuta" action="searchResults">
+                Nome: <g:textField name="nome" value="${nome}"/>
+                <g:submitButton name="submit" value="Pesquisar"/>
+            </g:form>
+
             <f:table collection="${fisioterapeutaList}" />
 
             <div class="pagination">

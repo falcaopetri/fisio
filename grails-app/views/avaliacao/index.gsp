@@ -19,6 +19,13 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
+
+            <g:form controller="avaliacao" action="searchResults">
+                Lesão: <g:textField name="lesao" value="${lesao}"/>
+                Paciente: <g:textField name="paciente" value="${paciente}"/>
+                <g:submitButton name="submit" value="Pesquisar"/>
+            </g:form>
+
             <f:table collection="${avaliacaoList}" />
 
             <div class="pagination">

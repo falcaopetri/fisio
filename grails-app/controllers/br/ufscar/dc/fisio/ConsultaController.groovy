@@ -1,6 +1,7 @@
 package br.ufscar.dc.fisio
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.grails.datastore.mapping.query.Restrictions
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -14,7 +15,23 @@ class ConsultaController {
     @Secured([Secretario.AUTHORITY, Fisioterapeuta.AUTHORITY])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Consulta.list(params), model:[consultaCount: Consulta.count()]
+        respond Consulta.list(params), model: [consultaCount: Consulta.count()]
+    }
+
+    def searchResults() {
+        // Source: https://stackoverflow.com/a/1723851
+        def entryCriteria = Consulta.createCriteria()
+        def results = entryCriteria.list {
+            if (params?.paciente) {
+                ficha {
+                    paciente {
+                        ilike("nome", "%${params.paciente}%")
+                    }
+                }
+            }
+        }
+        respond results, model: [consultaCount: results.size()],
+                view: 'index'
     }
 
     @Secured([Secretario.AUTHORITY, Fisioterapeuta.AUTHORITY])
@@ -36,11 +53,11 @@ class ConsultaController {
 
         if (consulta.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond consulta.errors, view:'create'
+            respond consulta.errors, view: 'create'
             return
         }
 
-        consulta.save flush:true
+        consulta.save flush: true
 
         request.withFormat {
             form multipartForm {
@@ -65,18 +82,18 @@ class ConsultaController {
 
         if (consulta.hasErrors()) {
             transactionStatus.setRollbackOnly()
-            respond consulta.errors, view:'edit'
+            respond consulta.errors, view: 'edit'
             return
         }
 
-        consulta.save flush:true
+        consulta.save flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'consulta.label', default: 'Consulta'), consulta.id])
                 redirect consulta
             }
-            '*'{ respond consulta, [status: OK] }
+            '*' { respond consulta, [status: OK] }
         }
     }
 
@@ -89,14 +106,14 @@ class ConsultaController {
             return
         }
 
-        consulta.delete flush:true
+        consulta.delete flush: true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'consulta.label', default: 'Consulta'), consulta.id])
-                redirect action:"index", method:"GET"
+                redirect action: "index", method: "GET"
             }
-            '*'{ render status: NO_CONTENT }
+            '*' { render status: NO_CONTENT }
         }
     }
 
@@ -106,7 +123,7 @@ class ConsultaController {
                 flash.message = message(code: 'default.not.found.message', args: [message(code: 'consulta.label', default: 'Consulta'), params.id])
                 redirect action: "index", method: "GET"
             }
-            '*'{ render status: NOT_FOUND }
+            '*' { render status: NOT_FOUND }
         }
     }
 }

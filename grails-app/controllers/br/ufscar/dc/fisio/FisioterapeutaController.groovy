@@ -16,6 +16,17 @@ class FisioterapeutaController {
         respond Fisioterapeuta.list(params), model:[fisioterapeutaCount: Fisioterapeuta.count()]
     }
 
+    def searchResults() {
+        def entryCriteria = Fisioterapeuta.createCriteria()
+        def results = entryCriteria.list {
+            if(params?.nome) {
+                ilike("nome", "%${params.nome}%")
+            }
+        }
+        respond results, model:[fisioterapeutaCount: Fisioterapeuta.count()],
+                view:'index'
+    }
+
     def show(Fisioterapeuta fisioterapeuta) {
         respond fisioterapeuta
     }

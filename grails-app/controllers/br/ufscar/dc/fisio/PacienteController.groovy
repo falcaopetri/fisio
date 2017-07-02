@@ -16,6 +16,22 @@ class PacienteController {
         respond Paciente.list(params), model:[pacienteCount: Paciente.count()]
     }
 
+    def searchResults() {
+        // Source: https://stackoverflow.com/a/1723851
+        def entryCriteria = Paciente.createCriteria()
+        def results = entryCriteria.list {
+            if (params?.fisioterapeuta) {
+                fichas {
+                    fisioterapeuta {
+                        ilike("nome", "%${params.fisioterapeuta}%")
+                    }
+                }
+            }
+        }
+        respond results, model: [pacienteCount: results.size()],
+                view: 'index'
+    }
+
     def show(Paciente paciente) {
         respond paciente
     }
