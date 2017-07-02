@@ -37,6 +37,7 @@ class Ficha {
         status(inList: Status.values()*.id, blank: false)
         medico(blank: false)
         dataInicio(blank: false)
+        dataTermino(nullable: true)
     }
 
     String area

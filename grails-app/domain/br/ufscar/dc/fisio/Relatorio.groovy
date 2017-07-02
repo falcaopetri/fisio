@@ -14,9 +14,9 @@ class Relatorio {
 
     static constraints = {
         exercicios(blank: false)
-        status(blank: false)
         status(inList: Status.values()*.id, blank: false)
         acontecimentos(blank: false)
+        observacoes(nullable: true)
     }
 
     Consulta consulta

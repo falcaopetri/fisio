@@ -28,6 +28,14 @@ class Avaliacao {
         tratamento(blank: false)
         tipoTratamento(inList: TipoTratamento.values()*.id, blank: false)
         comportamentoDor(blank: false)
+        dataTrauma(nullable: true)
+        localTrauma(nullable: true)
+        tipoTratamento(nullable: true)
+        materialDeSintese(nullable: true)
+        dataCirurgia(nullable: true)
+        atividadesPermitidas(nullable: true)
+        testesEspeciais(nullable: true)
+        examesComplementares(nullable: true)
     }
 
     Ficha ficha

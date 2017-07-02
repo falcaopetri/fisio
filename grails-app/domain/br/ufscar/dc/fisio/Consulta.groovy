@@ -1,5 +1,8 @@
 package br.ufscar.dc.fisio
 
+import src.Util
+
+
 class Consulta {
     static hasOne = [relatorio: Relatorio, fisioterapeuta: Fisioterapeuta]
 
@@ -13,6 +16,6 @@ class Consulta {
 
     @Override
     String toString() {
-        return ficha?.paciente.toString() + " - " + data
+        return ficha?.paciente.toString() + " - " + Util.df.format(data)
     }
 }
