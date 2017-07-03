@@ -1,5 +1,8 @@
 package br.ufscar.dc.fisio
 
+import org.grails.datastore.gorm.GormEntity
+import src.Util
+
 class Secretario extends Usuario {
     // Read: https://stackoverflow.com/a/26712097
     static final String AUTHORITY = "ROLE_SECRETARIO"
@@ -12,14 +15,30 @@ class Secretario extends Usuario {
     String nome
     String telefone
 
+
     @Override
     Secretario save() {
-        Secretario user = super.save()
-        def papel = Papel.findByAuthority(Secretario.AUTHORITY) ?:
-                new Papel(authority: Secretario.AUTHORITY).save()
-
-        UsuarioPapel.create(user, papel)
+        Usuario user = super.save()
+        Util.savePapel(user)
         return user
     }
 
+    @Override
+    Secretario save(boolean b) {
+        Usuario user = super.save(b)
+        Util.savePapel(user)
+        return user
+    }
+
+    @Override
+    Secretario save(Map map) {
+        Usuario user = super.save(map)
+        Util.savePapel(user)
+        return user
+    }
+
+    @Override
+    String getAuthorityName() {
+        return this.class.AUTHORITY
+    }
 }

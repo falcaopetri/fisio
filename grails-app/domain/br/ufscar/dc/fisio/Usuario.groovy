@@ -5,11 +5,12 @@ import groovy.transform.ToString
 
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
-class Usuario implements Serializable {
-
+abstract class Usuario implements Serializable {
 	private static final long serialVersionUID = 1
 
 	transient springSecurityService
+
+	abstract public String getAuthorityName();
 
 	String username
 	String password

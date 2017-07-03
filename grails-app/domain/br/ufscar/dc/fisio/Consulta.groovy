@@ -16,6 +16,11 @@ class Consulta {
 
     @Override
     String toString() {
-        return ficha?.paciente.toString() + " - " + Util.df.format(data)
+        try {
+            return ficha?.paciente.toString() + " - " + Util.df.format(data)
+        }
+        catch (Exception e) {
+            return ficha?.paciente.toString()
+        }
     }
 }

@@ -18,6 +18,7 @@ class ConsultaController {
         respond Consulta.list(params), model: [consultaCount: Consulta.count()]
     }
 
+    @Secured([Secretario.AUTHORITY, Fisioterapeuta.AUTHORITY])
     def searchResults() {
         // Source: https://stackoverflow.com/a/1723851
         def entryCriteria = Consulta.createCriteria()

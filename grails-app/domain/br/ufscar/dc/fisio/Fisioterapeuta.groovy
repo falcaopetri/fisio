@@ -1,5 +1,7 @@
 package br.ufscar.dc.fisio
 
+import src.Util
+
 class Fisioterapeuta extends Usuario {
     // Read: https://stackoverflow.com/a/26712097
     static final String AUTHORITY = "ROLE_FISIOTERAPEUTA"
@@ -28,16 +30,32 @@ class Fisioterapeuta extends Usuario {
 
     @Override
     Fisioterapeuta save() {
-        Fisioterapeuta user = super.save()
-        def papel = Papel.findByAuthority(Fisioterapeuta.AUTHORITY) ?:
-                new Papel(authority: Fisioterapeuta.AUTHORITY).save()
+        Usuario user = super.save()
+        Util.savePapel(user)
+        return user
+    }
 
-        UsuarioPapel.create(user, papel)
+    @Override
+    Fisioterapeuta save(boolean b) {
+        Usuario user = super.save(b)
+        Util.savePapel(user)
+        return user
+    }
+
+    @Override
+    Fisioterapeuta save(Map map) {
+        Usuario user = super.save(map)
+        Util.savePapel(user)
         return user
     }
 
     @Override
     String toString() {
         return nome
+    }
+
+    @Override
+    String getAuthorityName() {
+        return this.class.AUTHORITY
     }
 }
