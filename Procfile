@@ -1,1 +1,1 @@
-web: build/install/fisio/bin/fisio
+web: build/install/Fisio/bin/Fisio
